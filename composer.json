@@ -4,5 +4,8 @@
             "Dracony\\Demo\\" : "src/",
             "Dracony\\Demo\\Tests\\" : "tests/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.5"
     }
 }
