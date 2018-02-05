@@ -5,6 +5,7 @@ php:
 
 before_script: 
 - "composer require codeclimate/php-test-reporter --dev"
+- "pwd"
 - "composer install"
 - "sudo apt-get update"
 - "sudo apt-get install apache2 libapache2-mod-fastcgi"
