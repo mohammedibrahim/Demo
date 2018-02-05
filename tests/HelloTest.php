@@ -22,7 +22,7 @@ class HelloTest extends \PHPUnit\Framework\TestCase
 
     public function testAPI()
     {
-        $response = (file_get_contents('http://localhost/Demo/'));
+        $response = (file_get_contents('http://localhost/'));
 
         $this->assertSame('Hello from the other side.', $response);
     }
