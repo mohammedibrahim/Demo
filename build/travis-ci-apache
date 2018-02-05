@@ -1,16 +1,22 @@
 <VirtualHost *:80>
-  ServerName localhos
-  DocumentRoot /var/www
-  Options Indexes FollowSymLinks
+  ServerName localhost
+  DocumentRoot %TRAVIS_BUILD_DIR%
 
-  <Directory /"var/www/">
+  <Directory "%TRAVIS_BUILD_DIR%/">
+    Options FollowSymLinks MultiViews ExecCGI
     AllowOverride All
-    <IfVersion < 2.4>
-      Allow from all
-    </IfVersion>
-    <IfVersion >= 2.4>
-      Require all granted
-    </IfVersion>
+    Require all granted
   </Directory>
 
+  # Wire up Apache to use Travis CI's php-fpm.
+  <IfModule mod_fastcgi.c>
+    AddHandler php5-fcgi .php
+    Action php5-fcgi /php5-fcgi
+    Alias /php5-fcgi /usr/lib/cgi-bin/php5-fcgi
+    FastCgiExternalServer /usr/lib/cgi-bin/php5-fcgi -host 127.0.0.1:9000 -pass-header Authorization
+
+    <Directory /usr/lib/cgi-bin>
+        Require all granted
+    </Directory>
+  </IfModule>
 </VirtualHost>
