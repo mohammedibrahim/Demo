@@ -21,7 +21,8 @@ before_script:
 - "sudo cp -f build/travis-ci-apache /etc/apache2/sites-available/000-default.conf"
 - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/000-default.conf
 - "sudo service apache2 restart"
-
+- "pwd"
+- "cat /etc/apache2/sites-available/000-default.conf"
 
 script: 
 - "phpunit --testsuite=unit --coverage-text --coverage-clover build/logs/clover.xml"
